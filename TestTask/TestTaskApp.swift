@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct TestTaskApp: App {
     @State private var showSplash = true
+    @StateObject var networkMonitor = NetworkMonitor()
     
     var body: some Scene {
         WindowGroup {
@@ -24,6 +25,7 @@ struct TestTaskApp: App {
                     }
             } else {
                 ContentView()
+                    .environmentObject(networkMonitor)
             }
         }
     }
