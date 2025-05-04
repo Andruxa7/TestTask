@@ -31,14 +31,7 @@ struct UsersListView: View {
                 }
                 Spacer()
             } else if viewModel.users.isEmpty && viewModel.isLoading {
-                Spacer()
-                ProgressView()
-                    .scaleEffect(1.5)
-                    .padding()
-                Text("Loading users...")
-                    .foregroundColor(.gray)
-                    .padding()
-                Spacer()
+                NoUsersYetView()
             } else {
                 ScrollView {
                     LazyVStack(spacing: 0) {
