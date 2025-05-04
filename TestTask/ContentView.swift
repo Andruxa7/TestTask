@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationView {
             Group {
                 if networkMonitor.isConnected {
-                    NoUsersYetView()
+                    MainTabbedView()
                 } else {
                     NoNetworkView()
                 }
