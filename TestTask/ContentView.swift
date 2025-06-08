@@ -12,12 +12,10 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            Group {
-                if networkMonitor.isConnected {
-                    MainTabbedView()
-                } else {
-                    NoNetworkView()
-                }
+            if networkMonitor.isConnected {
+                MainTabbedView()
+            } else {
+                NoNetworkView()
             }
         }
     }

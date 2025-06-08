@@ -14,11 +14,10 @@ struct UsersListView: View {
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
-                Color.primary
+                Color.primaryColor
                 Text("Working with GET request")
                     .headingStyle()
-                    .foregroundColor(.black.opacity(0.87))
-                    .padding(.vertical, Spacing.large)
+                    .foregroundStyle(Color.topbarTextColor)
             }
             .frame(height: 56)
             

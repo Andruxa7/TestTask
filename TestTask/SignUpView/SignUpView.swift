@@ -11,11 +11,10 @@ struct SignUpView: View {
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
-                Color.primary
+                Color.primaryColor
                 Text("Working with POST request")
                     .headingStyle()
-                    .foregroundColor(.black.opacity(0.87))
-                    .padding(.vertical, Spacing.large)
+                    .foregroundStyle(Color.topbarTextColor)
             }
             .frame(height: 56)
             
@@ -26,7 +25,7 @@ struct SignUpView: View {
             
             Spacer()
         }
-        .background(Color.background1)
+        .background(Color.backgroundColor)
     }
 }
 

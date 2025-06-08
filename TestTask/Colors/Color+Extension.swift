@@ -9,8 +9,18 @@ import Foundation
 import SwiftUI
 
 public extension Color {
-    static let primary = Color("Primary", bundle: .main)
-    static let secondary = Color("Secondary", bundle: .main)
-    static let background1 = Color("Background", bundle: .main)
-    static let buttonDisabled1 = Color("ButtonDisabled", bundle: .main)
+    static let primaryColor = Color("PrimaryCustomColor", bundle: .main)
+    static let primaryPressed = Color("ButtonPressed", bundle: .main)
+    static let primaryDisabled = Color("ButtonDisabled", bundle: .main)
+    static let secondaryColor = Color("SecondaryCustomColor", bundle: .main)
+    static let secondaryDarkColor = Color("SecondaryDark", bundle: .main)
+    static let secondaryPressedColor = Color("SecondaryPressed", bundle: .main)
+    static let backgroundColor = Color("Background", bundle: .main)
+    static let black_48 = Color("Black48", bundle: .main)
+    static let black_60 = Color("Black60", bundle: .main)
+    static let black_87 = Color("Black87", bundle: .main)
+    static let enabledFilledFocussedColor = Color("EnabledFilledFocussed", bundle: .main)
+    static let errorColor = Color("ErrorCustomColor", bundle: .main)
+    static let borderColor = Color("Borders", bundle: .main)
+    static let topbarTextColor = Color("TopbarText", bundle: .main)
 }
