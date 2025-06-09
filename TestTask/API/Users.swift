@@ -13,7 +13,7 @@ struct Users: Codable {
     let totalPages, totalUsers, count, page: Int
     let links: Links
     let users: [User]
-
+    
     enum CodingKeys: String, CodingKey {
         case success
         case totalPages = "total_pages"
@@ -40,7 +40,7 @@ struct User: Codable, Identifiable {
     let position: String
     let positionID, registrationTimestamp: Int
     let photo: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name, email, phone, position
         case positionID = "position_id"
@@ -56,7 +56,7 @@ struct Positions: Codable {
 }
 
 // MARK: - Position
-struct Position: Codable {
+struct Position: Codable, Identifiable {
     let id: Int
     let name: String
 }
@@ -65,4 +65,10 @@ struct Position: Codable {
 struct Token: Codable {
     let success: Bool
     let token: String
+}
+
+// MARK: - SaveToken
+struct SaveToken {
+    let token: String
+    let time: Date = Date()
 }

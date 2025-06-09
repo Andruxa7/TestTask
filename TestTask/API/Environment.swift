@@ -13,5 +13,8 @@ struct Environment {
     static let pageParam = "page"
     static let countParam = "count"
     
+    static let positionsPath = "/api/v1/positions"
+    static let tokenPath = "/api/v1/token"
+    
     static let countItems: Int = 6
 }
