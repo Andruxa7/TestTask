@@ -43,7 +43,7 @@ struct MainTabbedView: View {
                     .tag(1)
             }
             
-            HStack {
+            HStack(spacing: 0) {
                 Spacer()
                 Button {
                     selectedTab = TabbedItems.users.rawValue
@@ -54,11 +54,11 @@ struct MainTabbedView: View {
                             .renderingMode(.template)
                             .scaledToFill()
                             .frame(width: 40, height: 17)
-                            .foregroundColor(selectedTab == TabbedItems.users.rawValue ? Color.secondary : .black.opacity(0.60))
+                            .foregroundColor(selectedTab == TabbedItems.users.rawValue ? Color.secondaryColor : Color.black_60)
                         
                         Text(TabbedItems.users.title)
                             .body1Style()
-                            .foregroundColor(selectedTab == TabbedItems.users.rawValue ? Color.secondary : .black.opacity(0.60))
+                            .foregroundColor(selectedTab == TabbedItems.users.rawValue ? Color.secondaryColor : Color.black_60)
                     }
                 }
                 Spacer()
@@ -71,11 +71,11 @@ struct MainTabbedView: View {
                             .renderingMode(.template)
                             .scaledToFill()
                             .frame(width: 22, height: 17)
-                            .foregroundColor(selectedTab == TabbedItems.signUp.rawValue ? Color.secondary : .black.opacity(0.60))
+                            .foregroundColor(selectedTab == TabbedItems.signUp.rawValue ? Color.secondaryColor : Color.black_60)
                         
                         Text(TabbedItems.signUp.title)
                             .body1Style()
-                            .foregroundColor(selectedTab == TabbedItems.signUp.rawValue ? Color.secondary : .black.opacity(0.60))
+                            .foregroundColor(selectedTab == TabbedItems.signUp.rawValue ? Color.secondaryColor : Color.black_60)
                     }
                 }
                 Spacer()

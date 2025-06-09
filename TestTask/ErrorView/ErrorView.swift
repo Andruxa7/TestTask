@@ -15,41 +15,36 @@ struct ErrorView: View {
         VStack(spacing: 16) {
             Image(systemName: "exclamationmark.triangle")
                 .font(.system(size: 50))
-                .foregroundColor(.orange)
+                .foregroundStyle(Color.errorColor)
             
             Text("Something went wrong")
-                .font(.headline)
+                .headingStyle()
+                .foregroundStyle(Color.errorColor)
             
             Text(message)
-                .font(.body)
+                .body1Style()
                 .multilineTextAlignment(.center)
-                .foregroundColor(.secondary)
+                .foregroundStyle(Color.black_87)
                 .padding(.horizontal)
             
             Button(action: retryAction) {
                 Text("Try Again")
-                    .fontWeight(.semibold)
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 12)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
             }
+            .buttonStyle(CustomButtonStyle(type: .primary))
             .padding(.top, 8)
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
-                .shadow(color: .black.opacity(0.1), radius: 10)
+                .fill(Color.backgroundColor)
+                .shadow(color: .black_87.opacity(0.15), radius: 10)
         )
-        .padding()
     }
 }
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(message: "Unable to load data. Please try again.") {
+        ErrorView(message: "Unable to load data. \nPlease try again.") {
             print("Retry tapped")
         }
         .previewLayout(.sizeThatFits)
