@@ -23,7 +23,7 @@ struct NoNetworkView: View {
             } label: {
                 Text("Try again")
             }
-            .buttonStyle(.primary)
+            .buttonStyle(CustomButtonStyle(type: .primary))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)

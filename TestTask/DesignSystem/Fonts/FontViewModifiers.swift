@@ -1,5 +1,5 @@
 //
-//  ViewModifiers.swift
+//  FontViewModifiers.swift
 //  TestTask
 //
 //  Created by Andrii Stetsenko on 03.05.2025.
