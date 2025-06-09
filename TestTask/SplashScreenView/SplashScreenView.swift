@@ -12,6 +12,7 @@ struct SplashScreenView: View {
         ZStack {
             Color.primaryColor
                 .ignoresSafeArea()
+            
             VStack {
                 Image("logoTestTask")
                     .resizable()

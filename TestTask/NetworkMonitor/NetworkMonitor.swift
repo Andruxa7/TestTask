@@ -24,4 +24,24 @@ class NetworkMonitor: ObservableObject {
         }
         networkMonitor.start(queue: workerQueue)
     }
+    
+    func testNetworkConnection() async {
+        do {
+            let url = URL(string: "https://www.google.com")!
+            let (_, response) = try await URLSession.shared.data(from: url)
+            
+            if let httpResponse = response as? HTTPURLResponse,
+               httpResponse.statusCode == 200 {
+                await MainActor.run {
+                    self.isConnected = true
+                    self.objectWillChange.send()
+                }
+            }
+        } catch {
+            await MainActor.run {
+                self.isConnected = false
+                self.objectWillChange.send()
+            }
+        }
+    }
 }
