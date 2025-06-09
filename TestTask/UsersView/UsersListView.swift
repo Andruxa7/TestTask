@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UsersListView: View {
     
-    @StateObject var viewModel = UserViewViewModel()
+    @EnvironmentObject var viewModel: UserViewViewModel
     
     var body: some View {
         VStack(spacing: 0) {
@@ -43,14 +43,19 @@ struct UsersListView: View {
                         
                         if viewModel.isLoading && !viewModel.users.isEmpty {
                             ProgressView()
+                                .scaleEffect(0.8)
                                 .padding()
                         }
                     }
                     .padding(.bottom, 70)
                 }
+                .refreshable {
+                    Task {
+                        await viewModel.loadUsers(isRefresh: true)
+                    }
+                }
             }
         }
-        .environmentObject(viewModel)
         .task {
             if viewModel.users.isEmpty {
                 await viewModel.loadUsers()
@@ -59,7 +64,6 @@ struct UsersListView: View {
     }
 }
 
-// MARK: - Preview Provider
 struct UsersListView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = UserViewViewModel()
@@ -90,6 +94,7 @@ struct UsersListView_Previews: PreviewProvider {
                  photo: "https://randomuser.me/api/portraits/men/46.jpg")
         ]
         
-        return UsersListView(viewModel: viewModel)
+        return UsersListView()
+            .environmentObject(UserViewViewModel())
     }
 }

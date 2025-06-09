@@ -25,7 +25,9 @@ struct UsersListItem: View {
                                 .foregroundColor(.gray.opacity(0.5))
                         )
                 } placeholder: {
-                    ProgressView()
+                    Image("photoCover")
+                        .resizable()
+                        .scaledToFill()
                         .frame(width: 50, height: 50)
                         .clipShape(Circle())
                         .overlay(
@@ -35,25 +37,27 @@ struct UsersListItem: View {
                         )
                 }
                 
-                VStack(alignment: .leading, spacing: Spacing.small) {
-                    Text(user.name)
-                        .body2Style()
-                        .foregroundColor(.black.opacity(0.87))
+                VStack(alignment: .leading, spacing: Spacing.medium) {
+                    VStack(alignment: .leading, spacing: Spacing.small) {
+                        Text(user.name)
+                            .body2Style()
+                            .foregroundStyle(Color.black_87)
+                        
+                        Text(user.position)
+                            .body3Style()
+                            .foregroundStyle(Color.black_60)
+                    }
                     
-                    Text(user.position)
-                        .body3Style()
-                        .foregroundColor(.black.opacity(0.60))
-                        .padding(.bottom, Spacing.small)
-                    
-                    Text(user.email)
-                        .body3Style()
-                        .foregroundColor(.black.opacity(0.87))
-                        .lineLimit(1)
-                        .padding(.bottom, Spacing.small)
-                    
-                    Text(user.phone)
-                        .body3Style()
-                        .foregroundColor(.black.opacity(0.87))
+                    VStack(alignment: .leading, spacing: Spacing.small) {
+                        Text(user.email)
+                            .body3Style()
+                            .foregroundStyle(Color.black_87)
+                            .lineLimit(1)
+                        
+                        Text(user.phone.formattedPhoneNumber())
+                            .body3Style()
+                            .foregroundStyle(Color.black_87)
+                    }
                 }
                 
                 Spacer()
@@ -65,18 +69,17 @@ struct UsersListItem: View {
                 .padding(.leading, 82)
                 .padding(.trailing, 16)
         }
-        .background(Color.white)
+        .background(Color.backgroundColor)
     }
 }
 
-// MARK: - Preview Provider
 struct UsersListItem_Previews: PreviewProvider {
     static var previews: some View {
         UsersListItem(user: User(
             id: 2,
-            name: "Seraphina Anastasia Isolde Aurelia Celestina von Hohenzollern",
-            email: "maximus_wilderman_ronaldo_schuppe",
-            phone: "+38 (098) 278 76 24",
+            name: "Gayle Weimann",
+            email: "gayle.weimann@gmail.com",
+            phone: "+38 (098) 777 88 55",
             position: "Backend developer",
             positionID: 2,
             registrationTimestamp: 1609459200,

@@ -32,11 +32,13 @@ enum TabbedItems: Int, CaseIterable {
 
 struct MainTabbedView: View {
     @State var selectedTab = 0
+    @StateObject private var userViewModel = UserViewViewModel()
     
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
                 UsersListView()
+                    .environmentObject(userViewModel)
                     .tag(0)
                 
                 SignUpView()
