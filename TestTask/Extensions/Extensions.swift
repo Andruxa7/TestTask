@@ -38,3 +38,14 @@ extension Array where Element: Identifiable {
         return filter { seen.insert($0[keyPath: keyPath]).inserted }
     }
 }
+
+// Extension to resize UIImage in SignUpViewModel
+extension UIImage {
+    func resized(to size: CGSize) -> UIImage? {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: rect)
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}
