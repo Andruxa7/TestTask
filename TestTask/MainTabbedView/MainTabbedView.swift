@@ -32,6 +32,7 @@ enum TabbedItems: Int, CaseIterable {
 
 struct MainTabbedView: View {
     @State var selectedTab = 0
+    @State var isTabViewVisible = true
     @StateObject private var userViewModel = UserViewViewModel()
     
     var body: some View {
@@ -41,53 +42,62 @@ struct MainTabbedView: View {
                     .environmentObject(userViewModel)
                     .tag(0)
                 
-                SignUpView()
-                    .tag(1)
-            }
-            
-            HStack(spacing: 0) {
-                Spacer()
-                Button {
+                SignUpView(onSuccessfulSignUp: {
+                    Task {
+                        await userViewModel.loadUsers(isRefresh: true)
+                    }
                     selectedTab = TabbedItems.users.rawValue
-                } label: {
-                    HStack(spacing: Spacing.medium) {
-                        Image(TabbedItems.users.iconName)
-                            .resizable()
-                            .renderingMode(.template)
-                            .scaledToFill()
-                            .frame(width: 40, height: 17)
-                            .foregroundColor(selectedTab == TabbedItems.users.rawValue ? Color.secondaryColor : Color.black_60)
-                        
-                        Text(TabbedItems.users.title)
-                            .body1Style()
-                            .foregroundColor(selectedTab == TabbedItems.users.rawValue ? Color.secondaryColor : Color.black_60)
-                    }
-                }
-                Spacer()
-                Button {
-                    selectedTab = TabbedItems.signUp.rawValue
-                } label: {
-                    HStack(spacing: Spacing.medium) {
-                        Image(TabbedItems.signUp.iconName)
-                            .resizable()
-                            .renderingMode(.template)
-                            .scaledToFill()
-                            .frame(width: 22, height: 17)
-                            .foregroundColor(selectedTab == TabbedItems.signUp.rawValue ? Color.secondaryColor : Color.black_60)
-                        
-                        Text(TabbedItems.signUp.title)
-                            .body1Style()
-                            .foregroundColor(selectedTab == TabbedItems.signUp.rawValue ? Color.secondaryColor : Color.black_60)
-                    }
-                }
-                Spacer()
+                })
+                .tag(1)
             }
-            .padding(.top, Spacing.large)
-            .padding(.bottom, Spacing.small)
+            .keyboardAware(isVisible: $isTabViewVisible)
+            
+            if isTabViewVisible {
+                HStack(spacing: 0) {
+                    Spacer()
+                    Button {
+                        selectedTab = TabbedItems.users.rawValue
+                    } label: {
+                        HStack(spacing: Spacing.medium) {
+                            Image(TabbedItems.users.iconName)
+                                .resizable()
+                                .renderingMode(.template)
+                                .scaledToFill()
+                                .frame(width: 40, height: 17)
+                                .foregroundColor(selectedTab == TabbedItems.users.rawValue ? Color.secondaryColor : Color.black_60)
+                            
+                            Text(TabbedItems.users.title)
+                                .body1Style()
+                                .foregroundColor(selectedTab == TabbedItems.users.rawValue ? Color.secondaryColor : Color.black_60)
+                        }
+                    }
+                    Spacer()
+                    Button {
+                        selectedTab = TabbedItems.signUp.rawValue
+                    } label: {
+                        HStack(spacing: Spacing.medium) {
+                            Image(TabbedItems.signUp.iconName)
+                                .resizable()
+                                .renderingMode(.template)
+                                .scaledToFill()
+                                .frame(width: 22, height: 17)
+                                .foregroundColor(selectedTab == TabbedItems.signUp.rawValue ? Color.secondaryColor : Color.black_60)
+                            
+                            Text(TabbedItems.signUp.title)
+                                .body1Style()
+                                .foregroundColor(selectedTab == TabbedItems.signUp.rawValue ? Color.secondaryColor : Color.black_60)
+                        }
+                    }
+                    Spacer()
+                }
+                .padding(.top, Spacing.large)
+                .padding(.bottom, Spacing.small)
+            }
         }
     }
 }
 
 #Preview {
     MainTabbedView()
+        .environmentObject(SignUpViewModel())
 }

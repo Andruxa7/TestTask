@@ -9,6 +9,10 @@ import SwiftUI
 
 struct FailedView: View {
     @Binding var showFailedView: Bool
+    @State private var isRetrying = false
+    
+    let message: String
+    let retryAction: () async -> Bool
     
     var body: some View {
         ZStack {
@@ -18,16 +22,35 @@ struct FailedView: View {
                     .scaledToFill()
                     .frame(width: 200, height: 200)
                 
-                Text("That email is already registered")
-                    .headingStyle()
-                    .foregroundStyle(Color.black_87)
+                if isRetrying {
+                    ProgressView()
+                        .frame(width: 27, height: 27)
+                        .scaleEffect(1.4)
+                } else {
+                    Text(message)
+                        .headingStyle()
+                        .foregroundStyle(Color.black_87)
+                }
                 
                 Button {
-                    print("Try again is tapped!!!")
+                    Task {
+                        isRetrying = true
+                        
+                        let success = await retryAction()
+                        if success {
+                            showFailedView = false
+                        }
+                        
+                        print("Try again is tapped!!!")
+                        
+                        try? await Task.sleep(nanoseconds: 1_000_000_000)
+                        isRetrying = false
+                    }
                 } label: {
-                    Text("Try again")
+                    Text(isRetrying ? "Checking..." : "Try again")
                 }
                 .buttonStyle(CustomButtonStyle(type: .primary))
+                .disabled(isRetrying)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
@@ -49,10 +72,13 @@ struct FailedView: View {
             }
         }
         .background(Color.backgroundColor)
-
+        
     }
 }
 
 #Preview {
-    FailedView(showFailedView: .constant(true))
+    let vm = SignUpViewModel()
+    FailedView(showFailedView: .constant(true), message: "That email is already registered", retryAction: {
+        await vm.signUp()
+    })
 }

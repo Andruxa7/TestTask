@@ -10,6 +10,12 @@ import SwiftUI
 struct SignUpView: View {
     @StateObject var vm = SignUpViewModel()
     
+    @State var isTabViewVisible = true
+    @State var showSuccessView = false
+    @State var showFailedView = false
+    
+    let onSuccessfulSignUp: () -> Void
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -162,8 +168,14 @@ struct SignUpView: View {
                                     let success = await vm.signUp()
                                     if success {
                                         print("Signup successful")
+                                        DispatchQueue.main.async {
+                                            showSuccessView = true
+                                        }
                                     } else {
                                         print("Signup failed")
+                                        DispatchQueue.main.async {
+                                            showFailedView = true
+                                        }
                                     }
                                 }
                             }
@@ -178,17 +190,37 @@ struct SignUpView: View {
                 }
             }
             .background(Color.backgroundColor)
+            .hideKeyboardWhenTappedAround()
+            .keyboardAware(isVisible: $isTabViewVisible)
             .onAppear {
                 Task {
                     await vm.fetchPositions()
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .modalPresentation(
+            showSuccessView: $showSuccessView,
+            showFailedView: $showFailedView,
+            vm: vm,
+            onSuccessfulSignUp: onSuccessfulSignUp
+        )
         .environmentObject(vm)
-        
     }
 }
 
-#Preview {
-    SignUpView()
+struct SignUpView_Previews: PreviewProvider {
+    static var previews: some View {
+        let vm = SignUpViewModel()
+        vm.positions = [
+            Position(id: 1, name: "Frontend developer"),
+            Position(id: 2, name: "Backend developer"),
+            Position(id: 3, name: "Designer"),
+            Position(id: 4, name: "QA")
+        ]
+        return SignUpView(onSuccessfulSignUp: {
+            print(">>> Successful sign up")
+        })
+        .environmentObject(vm)
+    }
 }

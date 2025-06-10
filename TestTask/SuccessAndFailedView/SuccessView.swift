@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SuccessView: View {
     @Binding var showSuccessView: Bool
+    @EnvironmentObject var vm: SignUpViewModel
+    let onGotItTapped: () -> Void
     
     var body: some View {
         ZStack {
@@ -23,6 +25,8 @@ struct SuccessView: View {
                     .foregroundStyle(Color.black_87)
                 
                 Button {
+                    vm.clearForm()
+                    onGotItTapped()
                     showSuccessView = false
                 } label: {
                     Text("Got it")
@@ -35,6 +39,7 @@ struct SuccessView: View {
                 HStack {
                     Spacer()
                     Button {
+                        vm.clearForm()
                         showSuccessView = false
                     } label: {
                         Image("closeButton")
@@ -49,10 +54,13 @@ struct SuccessView: View {
             }
         }
         .background(Color.backgroundColor)
-
+        
     }
 }
 
 #Preview {
-    SuccessView(showSuccessView: .constant(true))
+    SuccessView(showSuccessView: .constant(true), onGotItTapped: {
+        print(">>> Got it!")
+    })
+    .environmentObject(SignUpViewModel())
 }
