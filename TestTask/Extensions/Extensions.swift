@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+var screenWidth: CGFloat {
+    UIScreen.main.bounds.width
+}
+
 // Extension to formattedPhoneNumber in UsersListItem
 extension String {
     func formattedPhoneNumber() -> String {
