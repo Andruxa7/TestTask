@@ -54,23 +54,23 @@ https://openapi_apidocs.abz.dev/frontend-test-assignment-v1
 ## 📸 Demo
 
 <p align="center">
-<img src="SimulatorScreenRecording.gif" width="200"/>
+<img src="Screencast/SimulatorScreenRecording.gif" width="200"/>
 </p>
 
 ## 📸 App Screencast
 
 <p align="left">
-<img src="Screenshot_1.png" width="200"/>
-<img src="Screenshot_2.png" width="200"/>
-<img src="Screenshot_3.png" width="200"/>
-<img src="Screenshot_4.png" width="200"/>
-<img src="Screenshot_5.png" width="200"/>
-<img src="Screenshot_6.png" width="200"/>
-<img src="Screenshot_7.png" width="200"/>
-<img src="Screenshot_8.png" width="200"/>
-<img src="Screenshot_9.png" width="200"/>
-<img src="Screenshot_10.png" width="200"/>
-<img src="Screenshot_11.png" width="200"/>
-<img src="Screenshot_12.png" width="200"/>
-<img src="Screenshot_13.png" width="200"/>
+<img src="Screencast/Screenshot_1.png" width="200"/>
+<img src="Screencast/Screenshot_2.png" width="200"/>
+<img src="Screencast/Screenshot_3.png" width="200"/>
+<img src="Screencast/Screenshot_4.png" width="200"/>
+<img src="Screencast/Screenshot_5.png" width="200"/>
+<img src="Screencast/Screenshot_6.png" width="200"/>
+<img src="Screencast/Screenshot_7.png" width="200"/>
+<img src="Screencast/Screenshot_8.png" width="200"/>
+<img src="Screencast/Screenshot_9.png" width="200"/>
+<img src="Screencast/Screenshot_10.png" width="200"/>
+<img src="Screencast/Screenshot_11.png" width="200"/>
+<img src="Screencast/Screenshot_12.png" width="200"/>
+<img src="Screencast/Screenshot_13.png" width="200"/>
 </p>
