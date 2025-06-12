@@ -73,4 +73,5 @@ https://openapi_apidocs.abz.dev/frontend-test-assignment-v1
 <img src="Screencast/Screenshot_11.png" width="200"/>
 <img src="Screencast/Screenshot_12.png" width="200"/>
 <img src="Screencast/Screenshot_13.png" width="200"/>
+<img src="Screencast/Screenshot_14.png" width="190"/>
 </p>
